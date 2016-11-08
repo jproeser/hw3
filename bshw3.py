@@ -27,14 +27,29 @@ for word in findword_student:
     word.replace_with(amazingstudent)
 
 ###### 2 ######
-for link in soup.findAll('iframe'):
-	link['src'] = "/Users/jamesroeser/Desktop/206/PROJECT-3/HW3-StudentCopy/jp/JP.png"
+# for link in soup.findAll(class_='field field-name-body field-type-text-with-summary field-label-hidden'):
+# 	link['src'] = "/Users/jamesroeser/Desktop/206/PROJECT-3/HW3-StudentCopy/jp/JP.png"
+
+
+for img in soup.findAll('https://testbed.files.wordpress.com/2012/09/bsi_exposition_041316_192.jpg'):
+	#class_="main"
+	img['src'] = "/Users/jamesroeser/Desktop/206/PROJECT-3/HW3-StudentCopy/jp/JP.png"
+
+# findmain = soup.find_all(text = re.compile('https://testbed.files.wordpress.com/2012/09/bsi_exposition_041316_192.jpg'))
+# for mainpic in findmain:
+# 	replacemain = str(mainpic).replace('https://testbed.files.wordpress.com/2012/09/bsi_exposition_041316_192.jpg', '/Users/jamesroeser/Desktop/206/PROJECT-3/HW3-StudentCopy/jp/JP.png')
+# 	mainpic.replace_with(replacemain)
 
 ###### 3 ######
-for img in soup.findAll('img'):
-	img['src'] = "/Users/jamesroeser/Desktop/206/PROJECT-3/HW3-StudentCopy/media/logo.png"
+# for img in soup.findAll('img'):
+# 	img['src'] = "/Users/jamesroeser/Desktop/206/PROJECT-3/HW3-StudentCopy/media/logo.png"
 
 txtfile = open("HW3_bSoup_html.html", "w")
+
+
+
+
+
 print(' creating html file...... ')
 print('    (look for html file in project folder)')
 txtfile.write(str(soup))
