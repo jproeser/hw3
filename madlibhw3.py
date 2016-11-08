@@ -9,6 +9,11 @@
 # Deliverables:
 # 1) Print the orginal text (150 tokens)
 # 1) Print the new text
+
+
+
+######### FINISHED ##########
+
 print("START*******")
  	
 import nltk
@@ -18,87 +23,42 @@ from nltk.book import *
 #print(text2) -- used to find that the file is Sense and Sensibility by Jane Austen 1811 (file name is austen-sense.txt)
 #nltk.download('punkt')
 from nltk import word_tokenize,sent_tokenize
+import random
 debug = False
 # get file from user to make mad lib out of
 if debug:
 	print ("Getting information from file madlib_test.txt...\n")
-para = text2 
-##You need to make a jump right here and turn para into a list of words
-count=0
-for i in para while count <= 250:
-	print(i)
-	count+=1
+para = text2[:151]
+print("\nOriginal Text (first 150 tokens)-----> ", para)
 
-#comment
+tagtokens = nltk.pos_tag(para) 
+#tags each token according to their part of speech
+tagtokens = tagtokens[:151] 
+#returns a list of tuples with corresponding part of speech tags
 
+tagconversion = {"NN":"a noun","NNS":"a plural noun","VB":"a verb","RB":"an adverb","JJ":"an adjective"}
+sub_prob = {"NN":.15,"NNS":.15,"VB":.1,"RB":.1, "JJ":.1}
 
-# from nltk.tokenize import sent_tokenize, word_tokenize
+# print(sub_prob)
+# print(tagconversion)
 
-# text = "Hello students, how are you doing today? Have you recovered from the exam?  I hope you are feeling better.  Things will be fine."
+def spaced(word):
+	if word in [",", ".", "?", "!", ":", "[", "]"]:
+		return word
+	else:
+		return " " + word
 
-# print(sent_tokenize(text))
-# print(word_tokenize(text))
+final_words = []
 
-# for i in word_tokenize(text):
-# 	print(i)
+print("\n")
 
-
-
-
-
-
-#nltk.corpus.gutenberg.fileids()
-
-
-
-
-
-#f = open(fname, encoding="ISO-8859-1")
-#f = open(fname, 'r')
-
-#read each line
-#with codecs.open(fname, "r",encoding='utf-8', errors='ignore') as fdata:
-tokens = nltk.word_tokenize(para)
-print("TOKENS")
-print(tokens[:151])
-
-# tokens = nltk.word_tokenize(para)
-# print("TOKENS")
-# print(tokens)
-# tagged_tokens = nltk.pos_tag(tokens) # gives us a tagged list of tuples
-# print("TAGGED TOKENS")
-# print(tagged_tokens)
-# if debug:
-# 	print ("First few tagged tokens are:")
-# 	for tup in tagged_tokens[:5]:
-# 		print (tup)
-
-# tagmap = {"NN":"a noun","NNS":"a plural noun","VB":"a verb","JJ":"an adjective"}
-# substitution_probabilities = {"NN":.1,"NNS":.2,"VB":.25,"JJ":.25}
-
-# def spaced(word):
-# 	if word in [",", ".", "?", "!", ":"]:
-# 		return word
-# 	else:
-# 		return " " + word
-
-# final_words = []
-
-
-# for (word, tag) in tagged_tokens:
-# 	if tag not in substitution_probabilities or random.random() > substitution_probabilities[tag]:
-# 		final_words.append(spaced(word))
-# 	else:
-# 		new_word = input("Please enter %s:\n" % (tagmap[tag]))
-# 		final_words.append(spaced(new_word))
-
-# print ("".join(final_words))
-
-
-
-
-
-
+for (word, tag) in tagtokens:
+	if tag not in sub_prob or random.random() > sub_prob[tag]:
+		final_words.append(spaced(word))
+	else:
+		new_word = input("Please enter %s:\n" % (tagconversion[tag]))
+		final_words.append(spaced(new_word))
+print("\nNEW TEXT-----> ","".join(final_words))
 print("\n\nEND*******")
 
 

@@ -5,7 +5,7 @@
 # You will demo this live for grading.
 
 
-##FINISHED
+######### FINISHED ##########
 print("""No output necessary although you 
 	can print out a success/failure message if you want to.""")
 
@@ -40,7 +40,7 @@ file = open('/Users/jamesroeser/Desktop/206/PROJECT-3/HW3-StudentCopy/twitterpic
 data = file.read()
 r = api.request('statuses/update_with_media', {'status':'#UMSI-206 #Proj3'}, {'media[]':data})
 
-print(r.status_code)
+print("Posted....status code =",r.status_code)
 
 
 
