@@ -10,14 +10,9 @@
 # 1) Print the orginal text (150 tokens)
 # 1) Print the new text
 
-
-
-######### FINISHED ##########
-
 print("START*******")
  	
 import nltk
-#import random
 #nltk.download() -- used to download nltk initially
 from nltk.book import *
 #print(text2) -- used to find that the file is Sense and Sensibility by Jane Austen 1811 (file name is austen-sense.txt)

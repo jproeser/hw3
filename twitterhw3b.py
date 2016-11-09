@@ -13,6 +13,9 @@ import requests
 import requests_oauthlib
 from textblob import TextBlob
 
+print('James Roesers Twitter: @james_roeser')
+
+
 # Unique code from Twitter
 access_token = "791350505062760448-wBIfVcpp2jN4N01vudQqeWSiAuUbgrO"
 access_token_secret = "hbHUIIT7f3Ebtb4LeXr0UYlZ1iOSuBUEeltb4bE5KCtck"
@@ -20,33 +23,33 @@ consumer_key = "lZ5f9CfP8zaTp6OqbX2FDrF8m"
 consumer_secret = "PF2sd98ybkxNBdVo43Lg6M3Go6BDz2BY9JtfWsIUOGAU3n8PxG"
 
 
-# Boilerplate code here
+# Boilerplate code 
 auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
 auth.set_access_token(access_token,access_token_secret)
 
 api = tweepy.API(auth)
+#Now we can create and delete tweets and find users 
+search_term = input('Please enter your search term-----> ')
+pubtweets = api.search(search_term)
 
-#Now we can Create Tweets, Delete Tweets, and Find Twitter Users
-pubtweets = api.search('UMSI')
+sub = 0
+#subjectivity -- measures how factual
+pol = 0
+#polarity -- measures how positive or negative
+count = 0 
 
-# avgsub = 0
-# avgpol = 0
-# count = 0 
-
-# for tweet in pubtweets:
-# 	print(tweet.text)
-# 	analysis = TextBlob(tweet.text)
-# 	tweetsub = analysis.subjectivity
-# 	tweetpol = analysis.polarity
-# 	count += 1
-# 	avgsub += tweetsub
-# 	avgpol += tweetpol
-# 	print("Tweet Subjectivity: ", tweetsub)
-# 	print("Tweet Polarity: ", tweetpol)
-
+for tweet in pubtweets:
+	print('\nTweet-----> ',tweet.text)
+	find = TextBlob(tweet.text)
+	tsub = find.subjectivity
+	tpol = find.polarity
+	count += 1
+	sub += tsub
+	pol += tpol
+	# print("Tweet Subjectivity-----> ", tsub)
+	# print("Tweet Polarity-----> ", tpol)
 
 
-
-print("Average subjectivity is ", (avgsub / count))
-print("Average polarity is ", (avgpol / count))
+print("\nAverage subjectivity = ", (sub / count))
+print("Average polarity = ", (pol / count))
 

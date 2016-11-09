@@ -8,46 +8,34 @@
 # Deliverables
 # Make sure the new page is uploaded to your GitHub account.
 
-
-
 import requests
 import re
 from bs4 import BeautifulSoup
 
 print ("\n working...... \n")
 
-base_url = 'http://collemc.people.si.umich.edu/data/bshw3StarterFile.html'
+base_url = 'https://www.si.umich.edu/programs/bachelor-science-information/bsi-admissions'
 r = requests.get(base_url)
 soup = BeautifulSoup(r.text, "html.parser")
 
 ###### 1 ######
+
 findword_student = soup.find_all(text = re.compile('student'))
 for word in findword_student:
     amazingstudent = str(word).replace('student', 'AMAZING student')
     word.replace_with(amazingstudent)
 
 ###### 2 ######
-# for link in soup.findAll(class_='field field-name-body field-type-text-with-summary field-label-hidden'):
-# 	link['src'] = "/Users/jamesroeser/Desktop/206/PROJECT-3/HW3-StudentCopy/jp/JP.png"
 
-
-for img in soup.findAll('https://testbed.files.wordpress.com/2012/09/bsi_exposition_041316_192.jpg'):
-	#class_="main"
-	img['src'] = "/Users/jamesroeser/Desktop/206/PROJECT-3/HW3-StudentCopy/jp/JP.png"
-
-# findmain = soup.find_all(text = re.compile('https://testbed.files.wordpress.com/2012/09/bsi_exposition_041316_192.jpg'))
-# for mainpic in findmain:
-# 	replacemain = str(mainpic).replace('https://testbed.files.wordpress.com/2012/09/bsi_exposition_041316_192.jpg', '/Users/jamesroeser/Desktop/206/PROJECT-3/HW3-StudentCopy/jp/JP.png')
-# 	mainpic.replace_with(replacemain)
+for imglink in soup.findAll('iframe'):
+	imglink['src'] = "/Users/jamesroeser/Desktop/206/PROJECT-3/HW3-StudentCopy/jp/JP.png"
 
 ###### 3 ######
-# for img in soup.findAll('img'):
-# 	img['src'] = "/Users/jamesroeser/Desktop/206/PROJECT-3/HW3-StudentCopy/media/logo.png"
+
+for imglink in soup.findAll('img'):
+	imglink['src'] = "/Users/jamesroeser/Desktop/206/PROJECT-3/HW3-StudentCopy/media/logo.png"
 
 txtfile = open("HW3_bSoup_html.html", "w")
-
-
-
 
 
 print(' creating html file...... ')
